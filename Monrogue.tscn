@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdljco0chg6x5"]
+
+[ext_resource type="PackedScene" uid="uid://eyiq2ysbdeo7" path="res://Player/Player.tscn" id="1_bsykb"]
+
+[node name="Monrogue" type="Node2D"]
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Tutorial"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" parent="." instance=ExtResource("1_bsykb")]
+position = Vector2(998, 576)
