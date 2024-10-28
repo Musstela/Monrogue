@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2l8k5jgxhwkd"]
+
+[ext_resource type="Texture2D" uid="uid://bd7f0j74nrd4g" path="res://Player/Sprites/ATTACK 1.png" id="1_h5p58"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcthm"]
+radius = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3somo"]
+atlas = ExtResource("1_h5p58")
+region = Rect2(0, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pvby"]
+atlas = ExtResource("1_h5p58")
+region = Rect2(148, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmbod"]
+atlas = ExtResource("1_h5p58")
+region = Rect2(296, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6vv6"]
+atlas = ExtResource("1_h5p58")
+region = Rect2(444, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gt8s"]
+atlas = ExtResource("1_h5p58")
+region = Rect2(592, 0, 148, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5dq4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3somo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pvby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmbod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6vv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gt8s")
+}],
+"loop": true,
+"name": &"BasicAttack",
+"speed": 8.0
+}]
+
+[node name="Basic Attack" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, -21)
+scale = Vector2(-0.897053, -0.497052)
+shape = SubResource("CircleShape2D_gcthm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, -41)
+sprite_frames = SubResource("SpriteFrames_b5dq4")
+animation = &"BasicAttack"
+frame = 3
+frame_progress = 0.281882
+metadata/_edit_lock_ = true

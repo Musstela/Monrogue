@@ -14,7 +14,6 @@ position = Vector2(-4, 0)
 script = ExtResource("1_ui7o4")
 
 [node name="Tutorial" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Tutorial"]
@@ -35,64 +34,8 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 60
-text = "05:00"
-
-[node name="Win" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="Win"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.14334, 0.14334, 0.14334, 1)
-
-[node name="Label" type="Label" parent="Win"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "Você sobreviveu"
-
-[node name="Lose" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="Lose"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Label" type="Label" parent="Lose"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "Você perdeu!"
 
 [node name="Player" parent="." instance=ExtResource("1_bsykb")]
-unique_name_in_owner = true
 position = Vector2(998, 576)
 
 [node name="Path2D" type="Path2D" parent="Player"]
@@ -104,14 +47,12 @@ unique_name_in_owner = true
 position = Vector2(2057, -178)
 rotation = 1.56923
 
-[node name="MobTimer" type="Timer" parent="Player/Path2D"]
-unique_name_in_owner = true
+[node name="Timer" type="Timer" parent="Player/Path2D"]
 autostart = true
 
 [node name="GameTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 autostart = true
 
-[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
-[connection signal="timeout" from="Player/Path2D/MobTimer" to="." method="_on_mob_spawn_timer_timeout"]
+[connection signal="timeout" from="Player/Path2D/Timer" to="." method="_on_mob_spawn_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

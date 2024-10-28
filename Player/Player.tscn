@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://eyiq2ysbdeo7"]
+[gd_scene load_steps=44 format=3 uid="uid://eyiq2ysbdeo7"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_ac8ei"]
 [ext_resource type="Texture2D" uid="uid://bd7f0j74nrd4g" path="res://Player/Sprites/ATTACK 1.png" id="2_pypb6"]
@@ -103,7 +103,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_3dxnm")
 }],
 "loop": true,
-"name": &"Attack",
+"name": &"Basic_Attack",
 "speed": 8.0
 }, {
 "frames": [{
@@ -159,21 +159,238 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1c0aw"]
+animation = &"Basic_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v64s"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pdkd"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q5vgc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_amohn"]
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_suxa6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ewi2g"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_48ugx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gbv62"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nh0yv"]
+states/End/position = Vector2(660.8, 106.486)
+states/Start/position = Vector2(218.4, 102.565)
+states/basic_attack/node = SubResource("AnimationNodeAnimation_1c0aw")
+states/basic_attack/position = Vector2(427.44, 227.6)
+states/idle/node = SubResource("AnimationNodeAnimation_5v64s")
+states/idle/position = Vector2(426.8, 105.846)
+states/run/node = SubResource("AnimationNodeAnimation_5pdkd")
+states/run/position = Vector2(428.272, -10)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_q5vgc"), "idle", "End", SubResource("AnimationNodeStateMachineTransition_amohn"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_suxa6"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_ewi2g"), "idle", "basic_attack", SubResource("AnimationNodeStateMachineTransition_48ugx"), "basic_attack", "idle", SubResource("AnimationNodeStateMachineTransition_gbv62")]
+graph_offset = Vector2(-380, 56)
+
+[sub_resource type="Animation" id="Animation_w1h3w"]
+resource_name = "Basic_Attack"
+length = 0.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Basic_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic_Attack/Basic_Attack_Hurtbox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_rs6te"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_tu1bc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic_Attack/Basic_Attack_Hurtbox:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_t578s"]
+resource_name = "Run"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimation:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ke1te"]
+_data = {
+"Basic_Attack": SubResource("Animation_w1h3w"),
+"Idle": SubResource("Animation_rs6te"),
+"RESET": SubResource("Animation_tu1bc"),
+"Run": SubResource("Animation_t578s")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_loy52"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uoaq7"]
+radius = 33.6916
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg6bv"]
+bg_color = Color(0, 0.641226, 0.440528, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(2, 0)
+position = Vector2(0, -30)
+collision_mask = 0
 script = ExtResource("1_ac8ei")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -31)
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -8)
 shape = SubResource("CircleShape2D_4w4gs")
+metadata/_edit_lock_ = true
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(15, -43)
+position = Vector2(14, -17)
 sprite_frames = SubResource("SpriteFrames_cl6pt")
-animation = &"Run"
-frame = 4
-frame_progress = 0.760168
+animation = &"Idle"
+frame = 5
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_nh0yv")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ke1te")
+}
+
+[node name="Basic_Attack" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(50, 3)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Basic_Attack_Hurtbox" type="CollisionShape2D" parent="Basic_Attack"]
+position = Vector2(-8, -1)
+scale = Vector2(3.16, 1.2)
+shape = SubResource("CircleShape2D_loy52")
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1, -9)
+scale = Vector2(1.24, 1.2)
+shape = SubResource("CircleShape2D_uoaq7")
+debug_color = Color(0.748733, 0.287816, 0.892306, 0.42)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -47.0
+offset_top = -53.0
+offset_right = 47.0
+offset_bottom = -43.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dg6bv")
+show_percentage = false
+
+[connection signal="body_entered" from="Basic_Attack" to="." method="_on_basic_attack_body_entered"]

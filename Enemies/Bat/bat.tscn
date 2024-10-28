@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://cvxr085o7ph6q"]
+[gd_scene load_steps=20 format=3 uid="uid://cvxr085o7ph6q"]
 
+[ext_resource type="Script" path="res://Enemies/Bat/bat.gd" id="1_1q2pp"]
 [ext_resource type="Texture2D" uid="uid://daeumh5ocfv08" path="res://Enemies/Bat/Sprite/Attack_Death.png" id="1_atyx1"]
 [ext_resource type="Texture2D" uid="uid://dn6h8ypt1v8vu" path="res://Enemies/Bat/Sprite/Idle_Fly.png" id="2_u1gbv"]
 
@@ -86,7 +87,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cioir")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 8.0
 }, {
@@ -111,17 +112,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 8.0
+"speed": 6.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgb2x"]
 
 [node name="Bat" type="CharacterBody2D"]
+position = Vector2(0, -26)
+scale = Vector2(2.64, 2.64)
+collision_layer = 2
+collision_mask = 0
+platform_floor_layers = 4294967040
+script = ExtResource("1_1q2pp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BatAnimations" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_lufda")
-animation = &"Idle"
-frame_progress = 0.724245
+animation = &"Death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.96, 1.96)
