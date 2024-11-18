@@ -51,15 +51,38 @@ func update_player(delta):
 
 func _physics_process(delta):
 	update_player(delta)
-	
-	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
-
-	const DAMAGE_RATE = 25
-	
-	health -= DAMAGE_RATE * overlapping_mobs.size() * delta
 	%HealthBar.value = health
-	if health <= 0.0:
-		health_depleted.emit()
+	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
+	
+	if(overlapping_mobs.size() > 0):
+		
+		const DAMAGE_RATE = 25
+		
+		health -= DAMAGE_RATE * overlapping_mobs.size() * delta
+		%HitSound.playing = true
+		blink_on_damage()
+		if health <= 0.0:
+			health_depleted.emit()
+
+#func play_hit_sound():
+	#var audio = Audio
+func blink_on_damage(blink_duration: float = 0.5, blink_count: int = 2) -> void:
+	var blink_timer = Timer.new()
+	add_child(blink_timer)
+	blink_timer.wait_time = blink_duration
+	blink_timer.one_shot = true
+
+	for i in range(blink_count):
+		# Toggle between visible and invisible
+		%PlayerAnimation.modulate = Color(1, 1, 1, 0) if i % 2 == 0 else Color(1, 1, 1, 1)
+		blink_timer.start()
+		
+		# Use await instead of yield
+		await blink_timer.timeout
+
+	# Reset to fully visible after blinking
+	%PlayerAnimation.modulate = Color(1, 1, 1, 1)
+	blink_timer.queue_free()
 
 func _on_basic_attack_body_entered(enemy):
 	if enemy.has_method("take_damage"):

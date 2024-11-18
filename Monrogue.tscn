@@ -1,11 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bj4b5buu4ywxv"]
+[gd_scene load_steps=5 format=3 uid="uid://bj4b5buu4ywxv"]
 
 [ext_resource type="PackedScene" uid="uid://eyiq2ysbdeo7" path="res://Player/Player.tscn" id="1_bsykb"]
 [ext_resource type="Script" path="res://Monrogue.gd" id="1_ui7o4"]
+[ext_resource type="Texture2D" uid="uid://c3rid011dv5j8" path="res://Map/Map.png" id="2_28j5l"]
 
 [sub_resource type="Curve2D" id="Curve2D_skiru"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 2057, -178, 0, 0, 0, 0, 2059, 1102, 0, 0, 0, 0, -168, 1100, 0, 0, 0, 0, -160, -174)
+"points": PackedVector2Array(0, 0, 0, 0, 2057, -178, 0, 0, 0, 0, 2095, 1310, 0, 0, 0, 0, -209, 1343, 0, 0, 0, 0, -227, -183)
 }
 point_count = 4
 
@@ -17,13 +18,9 @@ script = ExtResource("1_ui7o4")
 unique_name_in_owner = true
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="Tutorial"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.258566, 0.258566, 0.258566, 1)
+[node name="Map" type="Sprite2D" parent="Tutorial"]
+position = Vector2(956, 629)
+texture = ExtResource("2_28j5l")
 
 [node name="TimerLabel" type="Label" parent="Tutorial"]
 unique_name_in_owner = true
@@ -102,7 +99,7 @@ curve = SubResource("Curve2D_skiru")
 [node name="MobSpawner" type="PathFollow2D" parent="Player/Path2D"]
 unique_name_in_owner = true
 position = Vector2(2057, -178)
-rotation = 1.56923
+rotation = 1.54526
 
 [node name="MobTimer" type="Timer" parent="Player/Path2D"]
 unique_name_in_owner = true

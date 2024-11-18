@@ -11,7 +11,7 @@ func spawn_mob():
 	new_bat.global_position = %MobSpawner.global_position
 	
 	add_child(new_bat)
-
+	
 func _on_mob_spawn_timer_timeout():
 	spawn_mob()
 

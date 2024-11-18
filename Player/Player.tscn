@@ -1,9 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://eyiq2ysbdeo7"]
+[gd_scene load_steps=45 format=3 uid="uid://eyiq2ysbdeo7"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_ac8ei"]
 [ext_resource type="Texture2D" uid="uid://bd7f0j74nrd4g" path="res://Player/Sprites/ATTACK 1.png" id="2_pypb6"]
 [ext_resource type="Texture2D" uid="uid://d3680cxxybqpn" path="res://Player/Sprites/IDLE.png" id="3_aapcn"]
 [ext_resource type="Texture2D" uid="uid://32y44uxinh1u" path="res://Player/Sprites/RUN.png" id="4_mhicm"]
+[ext_resource type="AudioStream" uid="uid://c8cfjs6x2h4un" path="res://Audio/hit-sound.mp3" id="5_xh0pb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4w4gs"]
 radius = 42.0119
@@ -194,7 +195,7 @@ states/idle/position = Vector2(426.8, 105.846)
 states/run/node = SubResource("AnimationNodeAnimation_5pdkd")
 states/run/position = Vector2(428.272, -10)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_q5vgc"), "idle", "End", SubResource("AnimationNodeStateMachineTransition_amohn"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_suxa6"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_ewi2g"), "idle", "basic_attack", SubResource("AnimationNodeStateMachineTransition_48ugx"), "basic_attack", "idle", SubResource("AnimationNodeStateMachineTransition_gbv62")]
-graph_offset = Vector2(-380, 56)
+graph_offset = Vector2(-400, 6.3294)
 
 [sub_resource type="Animation" id="Animation_w1h3w"]
 resource_name = "Basic_Attack"
@@ -342,12 +343,8 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 position = Vector2(14, -17)
 sprite_frames = SubResource("SpriteFrames_cl6pt")
-animation = &"Idle"
-frame = 5
+animation = &"Basic_Attack"
 metadata/_edit_lock_ = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 unique_name_in_owner = true
@@ -392,5 +389,10 @@ offset_right = 47.0
 offset_bottom = -43.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_dg6bv")
 show_percentage = false
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(-7.00618, 15.1995)
+stream = ExtResource("5_xh0pb")
 
 [connection signal="body_entered" from="Basic_Attack" to="." method="_on_basic_attack_body_entered"]
