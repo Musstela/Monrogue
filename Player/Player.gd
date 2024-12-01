@@ -59,14 +59,14 @@ func _physics_process(delta):
 		const DAMAGE_RATE = 25
 		
 		health -= DAMAGE_RATE * overlapping_mobs.size() * delta
-		%HitSound.playing = true
+		if(%HitSound.playing != true):
+			%HitSound.play()
 		blink_on_damage()
 		if health <= 0.0:
 			health_depleted.emit()
 
 #func play_hit_sound():
-	#var audio = Audio
-func blink_on_damage(blink_duration: float = 0.5, blink_count: int = 2) -> void:
+func blink_on_damage(blink_duration: float = 0.25, blink_count: int = 10) -> void:
 	var blink_timer = Timer.new()
 	add_child(blink_timer)
 	blink_timer.wait_time = blink_duration
@@ -77,7 +77,6 @@ func blink_on_damage(blink_duration: float = 0.5, blink_count: int = 2) -> void:
 		%PlayerAnimation.modulate = Color(1, 1, 1, 0) if i % 2 == 0 else Color(1, 1, 1, 1)
 		blink_timer.start()
 		
-		# Use await instead of yield
 		await blink_timer.timeout
 
 	# Reset to fully visible after blinking

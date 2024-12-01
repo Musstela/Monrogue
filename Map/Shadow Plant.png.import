@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3rid011dv5j8"
-path="res://.godot/imported/Map.png-cf23b44723f51aea6b059010bedb5b10.ctex"
+uid="uid://bm6uxb8rvt231"
+path="res://.godot/imported/Shadow Plant.png-ee9366cb91780cf49261dc1b8fb2ed1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Map/Map.png"
-dest_files=["res://.godot/imported/Map.png-cf23b44723f51aea6b059010bedb5b10.ctex"]
+source_file="res://Map/Shadow Plant.png"
+dest_files=["res://.godot/imported/Shadow Plant.png-ee9366cb91780cf49261dc1b8fb2ed1a.ctex"]
 
 [params]
 

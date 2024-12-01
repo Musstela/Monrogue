@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c8cfjs6x2h4un" path="res://Audio/hit-sound.mp3" id="5_xh0pb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4w4gs"]
-radius = 42.0119
+radius = 29.0172
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0n5lj"]
 atlas = ExtResource("2_pypb6")
@@ -320,7 +320,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_loy52"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uoaq7"]
-radius = 33.6916
+radius = 26.6129
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg6bv"]
 bg_color = Color(0, 0.641226, 0.440528, 1)
@@ -331,7 +331,7 @@ corner_radius_bottom_left = 4
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -30)
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_ac8ei")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
@@ -343,7 +343,8 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 position = Vector2(14, -17)
 sprite_frames = SubResource("SpriteFrames_cl6pt")
-animation = &"Basic_Attack"
+animation = &"Idle"
+frame = 5
 metadata/_edit_lock_ = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -394,5 +395,9 @@ show_percentage = false
 unique_name_in_owner = true
 scale = Vector2(-7.00618, 15.1995)
 stream = ExtResource("5_xh0pb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_smoothed = true
 
 [connection signal="body_entered" from="Basic_Attack" to="." method="_on_basic_attack_body_entered"]

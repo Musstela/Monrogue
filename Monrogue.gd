@@ -39,6 +39,7 @@ func _on_player_health_depleted():
 	%Tutorial.visible = false
 	%GameTimer.stop()
 	%MobTimer.stop()
+	%Player.queue_free()
 	set_physics_process(false)
 	
 	%Lose.visible = true
